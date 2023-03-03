@@ -12,6 +12,7 @@ import CarEdit from './components/carEdit';
 
 function App() {
   return (
+    
    <div className='App' style={{textAlign:'center'}}>
     <NavBar/>
     <Switch>

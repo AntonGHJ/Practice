@@ -21,6 +21,12 @@ const CarPage = ({ carId }) => {
             <>
           
           <div className={`theme-${theme}`}>
+          <div className='darkmodeDiv'>
+            <button className='darkModeButton' onClick={toggleTheme}>
+                <span className="sun">☀️</span>
+                <span className="moon">🌙</span>
+            </button>
+        </div>
             <div className="backButton"><BackHistoryButton/></div>
             <div style={{maxWidth:1200, margin:"auto", borderRadius:"15"}}>
                 <Car id={carId} car={car}/>

@@ -20,7 +20,10 @@ const Car = ({ car }) => {
         <div><ImageSlider images={urls} alt={car.name}/></div>
     <tr >
     <td>
-    {`Model: ${car.name}`}
+
+  <span class="car-desc-text">Model: </span>
+  <span class="car-detail">{car.name}</span>
+
     <hr />
     {`Type of fuel: ${car.engine}`}
     <hr />
@@ -34,12 +37,6 @@ const Car = ({ car }) => {
 <PropertiesList properties={car.properties}/>
 
     </td>
-      <td>
-      
-     
-     
-      
-      </td>
       
     </tr>
     </>

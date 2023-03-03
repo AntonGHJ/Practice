@@ -6,12 +6,20 @@ import Description from './description';
 import MainPicture from './mainPict';
 
 const Main = () => {
-   const [theme, setTheme] = useDarkMode()
+   const [theme, toggleTheme] = useDarkMode()
     return (
     <>
     <div className={`theme-${theme}`}>
+    <div className='darkmodeDiv'>
+            <button className='darkModeButton' onClick={toggleTheme}>
+                <span className="sun">☀️</span>
+                <span className="moon">🌙</span>
+            </button>
+        </div>
         <MainPicture/>
-        <h1 >Our cars for sale you can find in cars list</h1>
+        
+        <br />
+       
     <hr />
     <Description/>    
     </div>

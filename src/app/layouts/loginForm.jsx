@@ -5,9 +5,44 @@ import useDarkMode from "../hooks/useDarkMode";
 import { validator } from "../utils/validator";
 
 const LoginForm = () => {
+    return ( <>
+    <section>
+    <div className="form-box">
+        <div className="form-value">
+            <form action="">
+                <h2>Login</h2>
+                <div className="inputbox">
+                <ion-icon name="mail-outline"></ion-icon>
+                    <input type="email" required/>
+                    <label htmlFor="">Email</label>
+                </div>
+                <div className="inputbox">
+                <ion-icon name="lock-closed-outline"></ion-icon>
+                    <input type="password" required/>
+                    <label htmlFor="">Password</label>
+                </div>
+                <div className="forget">
+                <label htmlFor=""><a href="#">Forget password</a></label>
+                </div>
+                <button className="logInButton">LOG IN</button>
+                <div className="register"><p>Don`t have an account?
+                    <a href="#">Register</a></p>
+                </div>
+            </form>
+
+        </div>
+    </div>
+    </section>
+    </> );
+}
+ 
+export default LoginForm;
+
+
+/*const LoginForm = () => {
     const [data, setData] = useState({ email: "", password: "" });
     const [errors, setErrors] = useState({});
-    const [theme, setTheme] = useDarkMode()
+    const [theme, toggleTheme] = useDarkMode()
     const handleChange = ({ target }) => {
         setData((prevState) => ({
             ...prevState,
@@ -49,7 +84,13 @@ const LoginForm = () => {
     return (
         <>
          <div className={`theme-${theme}`}>
-        <div className="container mt-5">
+         <div className='darkmodeDiv'>
+            <button className='darkModeButton' onClick={toggleTheme}>
+                <span className="sun">☀️</span>
+                <span className="moon">🌙</span>
+            </button>
+        </div>
+        <div className="container">
       
             <div className="row">
                 <div className="col-md-6 offset-md-3 shadow p-4">
@@ -87,11 +128,11 @@ const LoginForm = () => {
                 
                 
             </div>
-            
+            <Link className="nav-link" to={`/cars/carEdit`}>Add Car</Link>
         </div>
-        <Link className="nav-link" to={`/cars/carEdit`}>Add Car</Link>
+        
         </div>
         </>
     );
 };
-export default LoginForm;
+export default LoginForm;*/

@@ -8,7 +8,7 @@ function Contact() {
   const [message, setMessage] = useState('');
   const [showSuccess, setShowSuccess] = useState(false);
   const [showError, setShowError] = useState(false);
-  const [theme, setTheme] = useDarkMode()
+  const [theme, toggleTheme] = useDarkMode()
 
   const handleSubmit = async e => {
     e.preventDefault();
@@ -25,9 +25,16 @@ function Contact() {
   };
 
   return (
-    <>
+    
     <div className={`theme-${theme}`}>
-      <h1 className="text-center text-info my-5">Contact Us</h1>
+    <div className='darkmodeDiv'>
+            <button className='darkModeButton' onClick={toggleTheme}>
+                <span className="sun">☀️</span>
+                <span className="moon">🌙</span>
+            </button>
+        </div>
+    
+      <h1 className="text-center text-info mt-5">Contact Us</h1>
       <Form style={{maxWidth: 1200, margin:"auto" }} onSubmit={handleSubmit}>
         <Form.Group controlId="formName">
           <Form.Label>Name</Form.Label>
@@ -68,7 +75,8 @@ function Contact() {
         There was an error sending your message.
       </Alert>
       </div>
-    </>
+ 
+    
   );
 }
 
