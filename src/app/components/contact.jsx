@@ -25,58 +25,53 @@ function Contact() {
   };
 
   return (
-    
+    <>
     <div className={`theme-${theme}`}>
+      
     <div className='darkmodeDiv'>
             <button className='darkModeButton' onClick={toggleTheme}>
                 <span className="sun">☀️</span>
                 <span className="moon">🌙</span>
             </button>
         </div>
-    
-      <h1 className="text-center text-info mt-5">Contact Us</h1>
-      <Form style={{maxWidth: 1200, margin:"auto" }} onSubmit={handleSubmit}>
-        <Form.Group controlId="formName">
-          <Form.Label>Name</Form.Label>
-          <Form.Control
-            type="text"
-            placeholder="Enter your name"
-            value={name}
-            onChange={e => setName(e.target.value)}
-          />
-        </Form.Group>
-        <Form.Group controlId="formEmail">
-          <Form.Label>Email</Form.Label>
-          <Form.Control
-            type="email"
-            placeholder="Enter your email"
-            value={email}
-            onChange={e => setEmail(e.target.value)}
-          />
-        </Form.Group>
-        <Form.Group controlId="formMessage">
-          <Form.Label>Message</Form.Label>
-          <Form.Control
-            as="textarea"
-            rows="3"
-            placeholder="Enter your message"
-            value={message}
-            onChange={e => setMessage(e.target.value)}
-          />
-        </Form.Group>
-        <Button className='mt-5' variant="info" type="submit">
-          Submit
-        </Button>
-      </Form>
-      <Alert show={showSuccess} variant="success" className="mt-3">
+        
+        <Alert show={showSuccess} variant="success" >
         Message sent successfully!
       </Alert>
-      <Alert show={showError} variant="danger" className="mt-3">
+      <Alert show={showError} variant="danger" >
         There was an error sending your message.
-      </Alert>
-      </div>
- 
+      </Alert> 
+      <section>
+      <div className="form-box">
+        <div className="form-value">
+            <form action="">
+                <h2>Contact us</h2>
+                <div className="inputbox">
+               
+                    <input type="text"/>
+                    <label htmlFor="">Enter your email</label>
+                </div>
+                <div className="inputbox">
+                
+                    <input type="text" required/>
+                    <label htmlFor="">Enter your name</label>
+                </div>
+                
+                <div className="inputbox">
+                  <input type="textarea" rows="100" />
+                  <label htmlFor="">Enter your message</label>
+                </div>
+                <button className="logInButton" onClick={handleSubmit}>Send message</button>
+                
+            </form>
+
+        </div>
+    </div>
     
+    </section>
+      
+      </div>
+      </>
   );
 }
 

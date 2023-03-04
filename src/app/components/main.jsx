@@ -8,7 +8,7 @@ import MainPicture from './mainPict';
 const Main = () => {
    const [theme, toggleTheme] = useDarkMode()
     return (
-    <>
+   
     <div className={`theme-${theme}`}>
     <div className='darkmodeDiv'>
             <button className='darkModeButton' onClick={toggleTheme}>
@@ -16,14 +16,15 @@ const Main = () => {
                 <span className="moon">🌙</span>
             </button>
         </div>
+
         <MainPicture/>
+
         
-        <br />
-       
-    <hr />
-    <Description/>    
+       <Description/>
+        
+    
     </div>
-    </>);
+    );
 }
  
 export default Main;

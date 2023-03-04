@@ -5,7 +5,15 @@ import useDarkMode from "../hooks/useDarkMode";
 import { validator } from "../utils/validator";
 
 const LoginForm = () => {
-    return ( <>
+    const [theme, toggleTheme] = useDarkMode()
+    return ( 
+    <div className={`theme-${theme}`}>
+         <div className='darkmodeDiv'>
+            <button className='darkModeButton' onClick={toggleTheme}>
+                <span className="sun">☀️</span>
+                <span className="moon">🌙</span>
+            </button>
+        </div>
     <section>
     <div className="form-box">
         <div className="form-value">
@@ -33,7 +41,8 @@ const LoginForm = () => {
         </div>
     </div>
     </section>
-    </> );
+    </div>
+     );
 }
  
 export default LoginForm;
