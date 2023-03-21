@@ -148,12 +148,7 @@ const fetchAll = () =>
         return cars
     };
 
-    const fetchProperties = () => 
-     new Promise((resolve) => {
-        window.setTimeout(function () {
-            resolve(properties);
-        }, 0);
-    });
+    const fetchProperties = () => {return properties};
 
 
 export default {

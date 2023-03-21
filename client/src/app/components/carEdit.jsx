@@ -6,20 +6,32 @@ import MultiSelectField from "./multiSelectField";
 import BackHistoryButton from "./backButton";
 import { useProperties } from "../hooks/useProperties";
 import { useDispatch, useSelector } from "react-redux";
-import { addCar } from "../store/cars";
-
-
+import { addCar, getCurrentCarData } from "../store/cars";
+import useDarkMode from "../hooks/useDarkMode";
+import API from "../api";
 
 
    const CarEdit = () => {
    
-    
+    const [theme, toggleTheme] = useDarkMode()
     const dispatch = useDispatch()
-
+    const currentCar = useSelector(getCurrentCarData())
     const [carName, setCarName] = useState('')
     const [carEngine, setCarEngine] = useState('')
-    //const [carProperties, setCarProperties] = useState([])
-    
+    const properties = [{nonAccident: {
+        _id: "1",
+        name: "No road accidents",
+        color: "secondary"
+    },
+    oneOwner: {
+        _id: "2",
+        name: "From first owner",
+        color: "primary"
+    }}]
+    const propertiesList = properties.map((p) => ({
+        label: p.name,
+        value: p._id
+    }))
     const [carYear, setCarYear] = useState('')
     const [carMileage, setCarMileage] = useState('')
     const [carPrice, setCarPrice] = useState('')
@@ -28,7 +40,25 @@ import { addCar } from "../store/cars";
         //  setCars(cars.filter(car => car._id !== carId))
           console.log(carId);
       }
+useEffect(()=> {
+    console.log(currentCar);
+}, [])
+      const handleChange = (target) => {
+        console.log(target,'!', properties);
+        /*
+        setProperties((prevState) => ({
+            ...prevState,
+            [target.name]: target.value
+        }));*/
+    };
       return (
+        <div className={`theme-${theme}`}>
+        <div className='darkmodeDiv'>
+           <button className='darkModeButton' onClick={toggleTheme}>
+               <span className="sun">☀️</span>
+               <span className="moon">🌙</span>
+           </button>
+       </div>
         <div className="container">
       <label>
        
@@ -62,6 +92,14 @@ import { addCar } from "../store/cars";
             value={carPrice}
             onChange={(e) => setCarPrice(e.target.value)}                            
         />
+        
+        <MultiSelectField 
+                 defaultValue={properties}
+                 options={propertiesList}
+                 onChange={handleChange}
+                 name="properties"
+                 label="Choose car properties"/>
+
         <div className="addPicturesDiv">
         <label htmlFor="image-upload" className="image-label"> Add Photos <br />
       <input type="file" className="image-input"
@@ -86,7 +124,9 @@ import { addCar } from "../store/cars";
 
                   Add car</button>
       </label>
-      </div>)
+      </div>
+      </div>
+      )
 
 }
 

@@ -31,13 +31,6 @@ const CarPage = ({ carId }) => {
             <div style={{maxWidth:1200, margin:"auto", borderRadius:"15"}}>
                 <Car id={carId} car={car}/>
             </div>
-                {/*<h1> {car.name}</h1>
-                <p>Fuel type: {car.engine}</p>
-                <p> Year of production: {car.productionYear}</p>
-                <PropertiesList properties={car.properties}/>
-                <p> Toal mileage: {car.mileage} km</p>
-                <p> Price netto: {car.price} Euro</p>
-        <hr />*/}
                 
             </div>
            

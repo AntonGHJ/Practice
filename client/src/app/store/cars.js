@@ -16,12 +16,10 @@ const carsSlice = createSlice({
         toggleTheme(state, action){
         
         },
-       
-        addCar (state, action) {
-            
+        addCar (state, action) {            
             state.cars.push({              
                 name: action.payload.name,
-                properties: [],
+                properties: action.payload.properties,
                 _id: new Date().toISOString(),
                 images:  action.payload.images,               
                 engine: action.payload.engine,
@@ -43,6 +41,11 @@ const carsSlice = createSlice({
 });
 
 export const getCarsList = () => (state) => state.cars.cars;
+export const getCurrentCarData = () => (state) => {
+    return state.cars.cars
+        ? state.cars.cars.find((c) => c._id === state.cars.carId)
+        : null;
+};
 
 export const getCarById = (carId) => (state) => {
     if (state.cars) {

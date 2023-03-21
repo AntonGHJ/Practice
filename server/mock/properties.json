@@ -1,0 +1,28 @@
+ [
+  {
+      "_id": "1",
+      "name": "No road accidents",
+      "color": "secondary"
+  },
+   {
+      "_id": "2",
+      "name": "From first owner",
+      "color": "primary"
+  },
+  {
+      "_id": "3",
+      "name": "Full service history",
+      "color": "success"
+  },
+  {
+      "_id": "4",
+      "name": "TUV valid",
+      "color": "info"
+  },
+  {
+      "_id": "5",
+      "name": "Non Smoke Owner",
+      "color": "dark"
+  }
+
+]

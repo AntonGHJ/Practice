@@ -6,15 +6,15 @@ import { Link } from 'react-router-dom';
 import api from '../api';
 import useDarkMode from '../hooks/useDarkMode';
 import { getCarsList, removeCar } from '../store/cars';
+import { getProperties } from '../store/properties';
 
 import Car from './car';
 
 const CarsList = () => {   
     
     const cars = useSelector(getCarsList())
-    console.log(cars);
-   
      const dispatch = useDispatch()
+    
     const [theme, toggleTheme] = useDarkMode();
     return (   <>  
     
@@ -29,10 +29,10 @@ const CarsList = () => {
        
     <div className='container'>
     <div className='carListHeader'>OUR BEST CARS</div>
-    {cars.map((car, _id)=>(
+    {cars.map((car, _id, properties)=>(
         <div key={_id} className='mb-5' style={{maxWidth:1200, margin:"auto"}}>
             <table className='mb-5' >
-                <Car id={_id} car={car}/>
+                <Car id={_id} car={car} properties={properties}/>
             
                 <div className='detLink'>
         <Link className="detailsLink" to={`/cars/${car._id}`}>More details</Link>
@@ -40,8 +40,7 @@ const CarsList = () => {
         onClick={() => dispatch(removeCar(car._id))}>  
                     Delete car</button>       
         </div>
-      
-                
+
             </table>
             <hr />
             <br />

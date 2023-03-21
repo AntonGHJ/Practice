@@ -1,0 +1,6 @@
+{
+    "port": "8081",
+    "mongoUri": "mongodb+srv://AntonAN:DealerApp@cluster1.6da0ked.mongodb.net/?retryWrites=true&w=majority",
+    "accessSecret": "super secret key",
+    "refreshSecret":"super refresh key"
+} 

@@ -21,8 +21,8 @@ const Car = ({ car }) => {
     <tr >
     <td>
 
-  <span class="car-desc-text">Model: </span>
-  <span class="car-detail">{car.name}</span>
+  <span className="car-desc-text">Model: </span>
+  <span className="car-detail">{car.name}</span>
 
     <hr />
     {`Type of fuel: ${car.engine}`}
@@ -34,7 +34,7 @@ const Car = ({ car }) => {
     {`Price: ${car.price}`}
     <hr />
  
-<PropertiesList properties={car.properties}/>
+ {`Prop: ${car.properties}`}
 
     </td>
       

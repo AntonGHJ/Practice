@@ -37,7 +37,7 @@ const LoginForm = () => {
                     <a href="#">Register</a></p>
                 </div>
             </form>
-
+            <Link className="nav-link" to={`/cars/createCar`}>Add Car</Link>
         </div>
     </div>
     </section>
