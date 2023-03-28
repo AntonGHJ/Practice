@@ -1,9 +1,13 @@
+/*eslint-disable */
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Navbar, Nav } from 'react-bootstrap';
+import NavProfile from './navProfile';
+import { getIsLoggedIn } from '../store/users';
+import { useSelector } from 'react-redux';
 
 const NavBar = () => {
- 
+ // const isLoggedIn = useSelector(getIsLoggedIn());
   return (
    
     <Navbar sticky='top' bg="dark" variant='dark'>
@@ -21,8 +25,10 @@ const NavBar = () => {
           
           <Link className="nav-link" 
             style={{color: 'green', position:'absolute', right:'10px'}} 
-            to="/loginForm">Admin access</Link>
+            to="/login">Admin access</Link>
         </Nav>
+        //////
+        
       </Navbar.Collapse>
     </Navbar>
    

@@ -6,15 +6,17 @@ import PropTypes from "prop-types";
 import { useHistory } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { getCarById, getCurrentCarId } from "../store/cars";
-import PropertiesList from "./propertiesList";
+import PropertiesList from "../components/properties/propertiesList";
 import ImageSlider from "./imageSlider";
+import PropertiesCard from "./qualitiesCard";
+
 
 const Car = ({ car }) => {
     if (!car) {
         return null;
         }
     const urls = Array.from(car.images).map(file => URL.createObjectURL(file));
-
+        
     return (
         <>
         <div><ImageSlider images={urls} alt={car.name}/></div>
@@ -33,7 +35,7 @@ const Car = ({ car }) => {
     <hr />
     {`Price: ${car.price}`}
     <hr />
- 
+ <PropertiesCard data={car.properties}/>
  {`Prop: ${car.properties}`}
 
     </td>

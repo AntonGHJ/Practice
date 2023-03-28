@@ -1,11 +1,64 @@
+/*eslint-disable */
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import TextField from "../components/textField";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, useHistory } from "react-router-dom";
 import useDarkMode from "../hooks/useDarkMode";
+import { getAuthErrors, login } from "../store/users";
 import { validator } from "../utils/validator";
 
 const LoginForm = () => {
     const [theme, toggleTheme] = useDarkMode()
+    ///
+    const [data, setData] = useState({
+        email: "",
+        password: ""
+    });
+    //const loginError = useSelector(getAuthErrors());
+    const history = useHistory();
+    const dispath = useDispatch();
+   // const [errors, setErrors] = useState({});
+
+    const handleChange = (target) => {
+        setData((prevState) => ({
+            ...prevState,
+            [target.name]: target.value
+        }));
+    };
+
+    /*const validatorConfig = {
+        email: {
+            isRequired: {
+                message: "Электронная почта обязательна для заполнения"
+            }
+        },
+        password: {
+            isRequired: {
+                message: "Пароль обязателeн для заполнения"
+            }
+        }
+    };
+    useEffect(() => {
+        validate();
+    }, [data]);
+    const validate = () => {
+        const errors = validator(data, validatorConfig);
+        setErrors(errors);
+        return Object.keys(errors).length === 0;
+    };
+    const isValid = Object.keys(errors).length === 0;*/
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        //const isValid = validate();
+        //if (!isValid) return;
+        const redirect = history.location.state
+            ? history.location.state.from.pathname
+            : "/";
+
+        dispath(login({ payload: data, redirect }));
+    };
+
+    ///
     return ( 
     <div className={`theme-${theme}`}>
          <div className='darkmodeDiv'>
@@ -17,22 +70,41 @@ const LoginForm = () => {
     <section>
     <div className="form-box">
         <div className="form-value">
-            <form action="">
+            <form onSubmit={handleSubmit}>
                 <h2>Login</h2>
                 <div className="inputbox">
                 <ion-icon name="mail-outline"></ion-icon>
-                    <input type="email" required/>
+                    <input 
+                    type="email" 
+                    value={data.email}
+                    onChange={handleChange}
+                   // error={errors.email}
+                    required/>
                     <label htmlFor="">Email</label>
                 </div>
                 <div className="inputbox">
                 <ion-icon name="lock-closed-outline"></ion-icon>
-                    <input type="password" required/>
+                    <input 
+                        type="password" 
+                        value={data.password}
+                        onChange={handleChange}
+                       // error={errors.password} 
+                        required/>
                     <label htmlFor="">Password</label>
                 </div>
                 <div className="forget">
                 <label htmlFor=""><a href="#">Forget password</a></label>
                 </div>
-                <button className="logInButton">LOG IN</button>
+
+                {/*loginError && <p className="text-danger">{loginError}</p>*/}
+
+                <button 
+                    className="logInButton" 
+                    type="submit"
+                    //disabled={!isValid}
+                    >
+                        LOG IN
+                </button>
                 <div className="register"><p>Don`t have an account?
                     <a href="#">Register</a></p>
                 </div>

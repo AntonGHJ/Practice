@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import api from "../api";
+import propertyService from "../services/property.service";
 
 const propertiesSlice = createSlice({
     name: "properties",
@@ -31,13 +32,9 @@ const { propertiesRequested, propertiesReceived, propertiesRequestFailed } = act
 export const loadPropertiesList = () => async (dispatch, getState) => {
     console.log(getState());
         dispatch(propertiesRequested());
-        console.log('Запрошены свойства');
         try {
-            const  content  = await api.cars.fetchProperties();
-            console.log('Получены свойства, пытаюсь добавить в контент')
-            console.log(content)
+            const {content}  = await propertyService.fetchAll();
             dispatch(propertiesReceived(content));
-            console.log(getState());
         } catch (error) {
             console.log('Не получены свойства');
             dispatch(propertiesRequestFailed(error.message));
@@ -46,7 +43,7 @@ export const loadPropertiesList = () => async (dispatch, getState) => {
 }
 
 export const getProperties = () => (state) => state.properties.entities
-console.log('Get properties сработал');
+    
 
 export const getPropertiesLoadingStatus = () => (state) =>
     state.properties.isLoading;

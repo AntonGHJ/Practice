@@ -7,14 +7,8 @@ import { loadPropertiesList } from "../../store/properties";
 
 const AppLoader = ({ children }) => {
     const dispatch = useDispatch();
-    
-    
-    useEffect(() => {
-        dispatch(loadPropertiesList());
-      
-    }, []);
-   
-    return children;
+      dispatch(loadPropertiesList());
+      return children;
 };
 
 AppLoader.propTypes = {

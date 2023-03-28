@@ -6,11 +6,12 @@ import NavBar from './components/navBar';
 import CarsList from './components/carsList';
 import Cars from './layouts/cars';
 import CarPage from './components/carPage';
-import Login from './layouts/loginForm';
+
 import LoginForm from './layouts/loginForm';
 import CarEdit from './components/carEdit';
 import CreateCar from './components/createCar';
 import AppLoader from './components/hoc/appLoader';
+import Login from './layouts/login';
 
 function App() {
   return (
@@ -21,7 +22,7 @@ function App() {
                   <Route path='/cars/carEdit' component={CarEdit}/>
                   <Route path='/cars/createCar' component={CreateCar}/>
                   <Route path='/cars/:carId?' component={Cars}/>
-                  
+                  <Route path="/login/:type?" component={Login} />
                   <Route path='/carsList' component={CarsList}/>
                   <Route path='/contact' component={Contact}/>
                   <Route path='/loginForm' exact component={LoginForm}/>

@@ -7,15 +7,9 @@ import MultiSelectField from "./multiSelectField";
 import { useDispatch, useSelector } from "react-redux";
 import { getProperties, loadPropertiesList } from "../store/properties";
 import { addCar } from "../store/cars";
-import API from "../api";
-
-
 
 const CreateCar = () => {
     const properties = useSelector(getProperties())
-      
-
-    console.log(properties);
     const dispatch = useDispatch();
     const [carImages, setCarImages] = useState()
     const [data, setData] = useState({
@@ -33,18 +27,15 @@ const CreateCar = () => {
         label: p.name,
         value: p._id
     }));
-    console.log(propertiesList);
     const [errors, setErrors] = useState({});
 
     const handleChange = (e) => {
-        console.log(e);
         setData((prevState) => ({
             ...prevState,
             [e.target.name]: e.target.value
         }));
     };
     const handleChangeProperties = (e) => {
-        console.log(e);
         setData((prevState) => ({
             ...prevState,
             properties: e.value
@@ -80,6 +71,7 @@ const CreateCar = () => {
             images: carImages,
             properties: data.properties.map((p) => p.value)
         };
+        console.log(newData);
         dispatch(addCar(newData));
     };
 
@@ -125,7 +117,7 @@ const CreateCar = () => {
                 options={propertiesList}
                 onChange={handleChangeProperties}
                 name="properties"
-                label="Выберите ваши качества"/>
+                label="Choose  properties"/>
            
            <div className="addPicturesDiv">
         <label htmlFor="image-upload" className="image-label"> Add Photos <br />

@@ -6,7 +6,7 @@ const auth = require('../middleware/auth.middleware')
 const router = express.Router({mergeParams:true})
 
 
-router.post('/addCar', [
+router.post('/createCar', [
     
     //check('name', 'Min length - 3 symbols').isLength({min:3}),
     async (req, res) => {
@@ -39,7 +39,7 @@ router.post('/addCar', [
 }])
 
 //patch для изменения данных пользователя, get для получения списка пользователей
-router.patch('/:carId', auth, async (req, res) => {
+router.patch('/:carId', async (req, res) => {
     try {
         const { carId } = req.params        
         const updatedCar = await Car.findByIdAndUpdate(carId, req.body, {new: true})

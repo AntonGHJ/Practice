@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import api from "../api";
 
 import { useHistory } from "react-router-dom";
-import PropertiesList from "./propertiesList";
+
 import BackHistoryButton from "./backButton";
 import ImageSlider from "./imageSlider";
 import { useSelector } from "react-redux";
@@ -11,9 +11,11 @@ import { getCarById } from "../store/cars";
 import useDarkMode from "../hooks/useDarkMode";
 import Car from "./car";
 
+
 const CarPage = ({ carId }) => {
     const history = useHistory();
     const car = useSelector(getCarById(carId));
+    
     const [theme, toggleTheme] = useDarkMode()
     const urls = Array.from(car.images).map(file => URL.createObjectURL(file));
     if (car) {
@@ -29,7 +31,7 @@ const CarPage = ({ carId }) => {
         </div>
             <div className="backButton"><BackHistoryButton/></div>
             <div style={{maxWidth:1200, margin:"auto", borderRadius:"15"}}>
-                <Car id={carId} car={car}/>
+                <Car id={carId} car={car} />
             </div>
                 
             </div>

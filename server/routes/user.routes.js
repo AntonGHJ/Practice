@@ -5,7 +5,7 @@ const auth = require('../middleware/auth.middleware')
 
 
 //patch для изменения данных пользователя, get для получения списка пользователей
-router.patch('/:userId', auth, async (req, res) => {
+router.patch('/:userId', async (req, res) => {
     try {
         const { userId } = req.params
 
@@ -14,7 +14,7 @@ router.patch('/:userId', auth, async (req, res) => {
             res.send(updatedUser)
         } else{
             res.status(401).json({
-                message:'Unauthorized'
+                message:'Unauthorized 5'
             })
         }
     } catch (error) {
@@ -24,7 +24,7 @@ router.patch('/:userId', auth, async (req, res) => {
     }
 })
 
-router.get('/', auth, async(req, res) => {
+router.get('/', async(req, res) => {
     try {
         const list = await User.find()
         res.status(200).send(list)
