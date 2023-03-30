@@ -8,17 +8,20 @@ import { validator } from "../utils/validator";
 
 const LoginForm = () => {
     const [theme, toggleTheme] = useDarkMode()
-    ///
+    const [showPassword, setShowPassword] = useState(false);
+    const toggleShowPassword = () => {
+        setShowPassword((prevState) => !prevState);
+    };
     const [data, setData] = useState({
         email: "",
-        password: ""
+        password: ''
     });
     //const loginError = useSelector(getAuthErrors());
     const history = useHistory();
-    const dispath = useDispatch();
+    const dispatch = useDispatch();
    // const [errors, setErrors] = useState({});
 
-    const handleChange = (target) => {
+    const handleChange = ({target}) => {
         setData((prevState) => ({
             ...prevState,
             [target.name]: target.value
@@ -55,7 +58,8 @@ const LoginForm = () => {
             ? history.location.state.from.pathname
             : "/";
 
-        dispath(login({ payload: data, redirect }));
+        dispatch(login({ payload: data, redirect }));
+        console.log(data);
     };
 
     ///
@@ -71,11 +75,12 @@ const LoginForm = () => {
     <div className="form-box">
         <div className="form-value">
             <form onSubmit={handleSubmit}>
-                <h2>Login</h2>
+                <h2>LOGIN</h2>
                 <div className="inputbox">
                 <ion-icon name="mail-outline"></ion-icon>
                     <input 
                     type="email" 
+                    name="email" 
                     value={data.email}
                     onChange={handleChange}
                    // error={errors.email}
@@ -83,9 +88,14 @@ const LoginForm = () => {
                     <label htmlFor="">Email</label>
                 </div>
                 <div className="inputbox">
-                <ion-icon name="lock-closed-outline"></ion-icon>
+                <ion-icon 
+                    style={{cursor:'pointer'}} 
+                    name="lock-closed-outline" 
+                    onClick={toggleShowPassword}>
+                </ion-icon>
                     <input 
-                        type="password" 
+                        type= {showPassword ? "text" : "password"}
+                        name="password" 
                         value={data.password}
                         onChange={handleChange}
                        // error={errors.password} 
@@ -106,7 +116,7 @@ const LoginForm = () => {
                         LOG IN
                 </button>
                 <div className="register"><p>Don`t have an account?
-                    <a href="#">Register</a></p>
+                    <Link to={"/registerForm"}>Register</Link></p>
                 </div>
             </form>
             <Link className="nav-link" to={`/cars/createCar`}>Add Car</Link>

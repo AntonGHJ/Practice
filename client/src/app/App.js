@@ -5,13 +5,14 @@ import Contact from './components/contact';
 import NavBar from './components/navBar';
 import CarsList from './components/carsList';
 import Cars from './layouts/cars';
-import CarPage from './components/carPage';
 
 import LoginForm from './layouts/loginForm';
 import CarEdit from './components/carEdit';
 import CreateCar from './components/createCar';
 import AppLoader from './components/hoc/appLoader';
-import Login from './layouts/login';
+import RegisterForm from './components/registerForm';
+import ProtectedRoute from './components/protectedRoute';
+import Users from './layouts/users';
 
 function App() {
   return (
@@ -19,13 +20,18 @@ function App() {
           <div className='App' style={{textAlign:'center'}}>
               <NavBar/>
                 <Switch>
+                <ProtectedRoute
+                        path="/users/:userId?/:edit?"
+                        component={Users}
+                    />
                   <Route path='/cars/carEdit' component={CarEdit}/>
                   <Route path='/cars/createCar' component={CreateCar}/>
                   <Route path='/cars/:carId?' component={Cars}/>
-                  <Route path="/login/:type?" component={Login} />
+                  <Route path="/loginForm/:type?" component={LoginForm} />
                   <Route path='/carsList' component={CarsList}/>
                   <Route path='/contact' component={Contact}/>
                   <Route path='/loginForm' exact component={LoginForm}/>
+                  <Route path='/registerForm' exact component={RegisterForm}/>
                   <Route path='/' exact component={Main}/>
                   
                 </Switch>

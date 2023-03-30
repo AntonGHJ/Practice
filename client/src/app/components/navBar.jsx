@@ -7,7 +7,8 @@ import { getIsLoggedIn } from '../store/users';
 import { useSelector } from 'react-redux';
 
 const NavBar = () => {
- // const isLoggedIn = useSelector(getIsLoggedIn());
+const isLoggedIn = useSelector(getIsLoggedIn());
+console.log(isLoggedIn);
   return (
    
     <Navbar sticky='top' bg="dark" variant='dark'>
@@ -21,11 +22,38 @@ const NavBar = () => {
           <Link className="nav-link" to="/cars">Our cars for sale</Link>
           <div style={{ marginLeft:'100px', alignContent:'center'}}
           className='navbar-text'> bestdealer@mail.com <span>/</span> +31077708881</div>
-          
+          ///
+          {isLoggedIn||isLoggedIn==undefined && (
+                        <li className="nav-item">
+                            <Link
+                                className="nav-link "
+                                aria-current="page"
+                                to="/carsList"
+                            >
+                                Cars
+                            </Link>
+                        </li>
+                    )}
+
+          <div className="d-flex">  
+                    {isLoggedIn ||isLoggedIn==undefined ? (
+                        <NavProfile />
+                    ) : (
+                        <Link
+                            className="nav-link "
+                            aria-current="page"
+                            to="/loginForm"
+                        >
+                            Login
+                        </Link>
+                    )}
+                </div>
+
+          ///
           
           <Link className="nav-link" 
             style={{color: 'green', position:'absolute', right:'10px'}} 
-            to="/login">Admin access</Link>
+            to="/loginForm">Admin access</Link>
         </Nav>
         //////
         

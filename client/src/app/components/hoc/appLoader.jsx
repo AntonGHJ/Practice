@@ -3,11 +3,20 @@ import PropTypes from "prop-types";
 import { useDispatch, useSelector } from "react-redux";
 
 import { loadPropertiesList } from "../../store/properties";
+import { getIsLoggedIn, loadUsersList } from "../../store/users";
 
 
 const AppLoader = ({ children }) => {
     const dispatch = useDispatch();
-      dispatch(loadPropertiesList());
+    const isLoggedIn = useSelector(getIsLoggedIn())
+    console.log(isLoggedIn);
+    useEffect(() => {
+        dispatch(loadPropertiesList());
+        if (isLoggedIn) {
+            dispatch(loadUsersList());
+        }
+    }, [isLoggedIn]);
+     
       return children;
 };
 
