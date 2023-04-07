@@ -7,7 +7,7 @@ import { getIsLoggedIn } from '../store/users';
 import { useSelector } from 'react-redux';
 
 const NavBar = () => {
-const isLoggedIn = useSelector(getIsLoggedIn());
+const isLoggedIn = true//useSelector(getIsLoggedIn());
 console.log(isLoggedIn);
   return (
    
@@ -23,7 +23,7 @@ console.log(isLoggedIn);
           <div style={{ marginLeft:'100px', alignContent:'center'}}
           className='navbar-text'> bestdealer@mail.com <span>/</span> +31077708881</div>
           ///
-          {isLoggedIn||isLoggedIn==undefined && (
+          {!isLoggedIn && (
                         <li className="nav-item">
                             <Link
                                 className="nav-link "
@@ -36,7 +36,7 @@ console.log(isLoggedIn);
                     )}
 
           <div className="d-flex">  
-                    {isLoggedIn ||isLoggedIn==undefined ? (
+                    {isLoggedIn ? (
                         <NavProfile />
                     ) : (
                         <Link

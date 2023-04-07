@@ -36,7 +36,7 @@ const Car = ({ car }) => {
     {`Price: ${car.price}`}
     <hr />
  <PropertiesCard data={car.properties}/>
- {`Prop: ${car.properties}`}
+
 
     </td>
       

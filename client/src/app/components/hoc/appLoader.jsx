@@ -8,15 +8,14 @@ import { getIsLoggedIn, loadUsersList } from "../../store/users";
 
 const AppLoader = ({ children }) => {
     const dispatch = useDispatch();
-    const isLoggedIn = useSelector(getIsLoggedIn())
+    const isLoggedIn = true//useSelector(getIsLoggedIn())
     console.log(isLoggedIn);
     useEffect(() => {
         dispatch(loadPropertiesList());
         if (isLoggedIn) {
             dispatch(loadUsersList());
         }
-    }, [isLoggedIn]);
-     
+    }, []);     
       return children;
 };
 

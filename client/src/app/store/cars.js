@@ -65,16 +65,23 @@ const carsSlice = createSlice({
     },
     
 });
-
-export const {
-    /*addCar, removeCar, toggleTheme*/
+const { reducer: carsReducer, actions } = carsSlice;
+const {
+    carsRequested,
+    carsReceived,
+    carCreated,
+    carUpdateSuccessed,
+    carsRequestFailed,
+    
+} = actions;
+{/*export const {
+    addCar, removeCar, toggleTheme
     carsRequested,
     carsReceived,
     carCreated,
     carUpdateSuccessed,
     carsRequestFailed
-} = carsSlice.actions;
-
+} = carsSlice.actions;*/}
 /*export const addCar = (payload) =>
     async (dispatch) => {
         console.log('Пытаюсь создать машину');
@@ -83,9 +90,11 @@ export const {
             const {data} = await carService.createCar(payload);
             console.log('data', data);
             //dispatch(carCreated(data));
+            console.log('Машина создана');
             history.push("/cars");
         } catch (error) {
             dispatch(carsRequestFailed(error.message));
+            console.log('ошибка создания', getState());
         }
     };*/
 export const addCar = (payload) => async (dispatch, getState) => {
@@ -95,7 +104,7 @@ export const addCar = (payload) => async (dispatch, getState) => {
             console.log('Пытаюсь создать машину, payload', payload);
             const { content } = await carService.createCar(payload);
             console.log('Пытаюсь создать машину, контент', content);
-            dispatch(carCreated(content));
+            dispatch(carCreated(payload));
             console.log('Машина создана');
             console.log(getState());
         } catch (error) {
@@ -117,4 +126,4 @@ export const getCarById = (carId) => (state) => {
 };
 
 
-export default carsSlice.reducer
+export default carsReducer

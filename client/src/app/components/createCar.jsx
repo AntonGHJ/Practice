@@ -21,7 +21,6 @@ const CreateCar = () => {
         images: [],
         properties: []
     });
-    //const properties = useSelector(getProperties());
     
     const propertiesList = Object.values(properties).map((p) => ({
         label: p.name,

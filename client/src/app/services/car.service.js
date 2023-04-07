@@ -3,29 +3,37 @@ const carEndpoint = "/car/";
 
 const carService = {
     createCar:
-    /*async (payload) => {
-        const { data } = await httpService.put(
-            carEndpoint + payload._id,
+    async (payload) => {
+       /* const { data } = await httpService.post(
+            carEndpoint + 'createCar/',
             payload
         );
+        console.log(data);
         return data;*/
-     async (payload) => {
+        const { data } = await httpService.post(`car/createCar`, payload);
+        return data;
+     /*async (payload) => {
         console.log(payload);
         
-        console.log('payload._id', payload._id);
-        const { data } = await httpService.post(carEndpoint, payload);
+        console.log('payload._id', payload.id);
+        const { data } = await httpService.put(
+            carEndpoint + 'createCar/',
+            payload
+        );
         console.log(data);
         
-        return data;
+        return data;*/
     },
-    getCars: async (carId) => {
-        const { data } = await httpService.get(carEndpoint, {
+    getCars: async () => {
+        const { data } = await httpService.get(carEndpoint);
+        return data;
+        /*const { data } = await httpService.get(carEndpoint, {
             params: {
                 orderBy: "carId",
                 equalTo: `${carId}`
             }
         });
-        return data;
+        return data;*/
     },
     removeCar: async (carId) => {
         const { data } = await httpService.delete(carEndpoint + carId);
