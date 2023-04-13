@@ -23,14 +23,14 @@ console.log(isLoggedIn);
           <div style={{ marginLeft:'100px', alignContent:'center'}}
           className='navbar-text'> bestdealer@mail.com <span>/</span> +31077708881</div>
           ///
-          {!isLoggedIn && (
+          {isLoggedIn && (
                         <li className="nav-item">
                             <Link
                                 className="nav-link "
                                 aria-current="page"
                                 to="/carsList"
                             >
-                                Cars
+                                CarsList
                             </Link>
                         </li>
                     )}

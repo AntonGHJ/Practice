@@ -22,10 +22,16 @@ router.post('/createCar', [
             })
         }
         const {name, engine, productionYear, mileage, price} = req.body
+        //
+       
+  
 
+
+        //
        
        const newCar = await Car.create({
-        ...req.body
+        ...req.body,
+        
        })
 
         res.status(201).send({ carId: newCar._id })

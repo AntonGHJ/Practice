@@ -3,6 +3,7 @@ const router = express.Router({mergeParams:true})
 
 router.use('/auth', require('./auth.routes'))
 router.use('/property', require('./property.routes'))
+router.use('/image', require('./image.routes'))
 router.use('/editCar', require('./car.routes'))
 router.use('/user', require('./user.routes'))
 router.use('/car', require('./car.routes'))

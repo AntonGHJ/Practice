@@ -5,9 +5,13 @@ const chalk = require('chalk');
 const cors = require('cors')
 const initDatabase = require('../server/startUp/initDatabase')
 const routes = require('./routes')
+const bodyParser = require("body-parser")
 
 const app = express()
 const PORT = config.get('port') ?? 8080
+
+app.use(bodyParser.json({limit: '50mb'}));
+app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
 
 app.use(express.json())
 app.use(express.urlencoded({extended:false}))

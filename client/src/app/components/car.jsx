@@ -15,11 +15,26 @@ const Car = ({ car }) => {
     if (!car) {
         return null;
         }
-    const urls = Array.from(car.images).map(file => URL.createObjectURL(file));
         
+        /*const urls = Array.from(car.images).map(file => {
+            console.log(car.images);
+            return URL.createObjectURL(file);
+          });*/
+    /*let urls = [];
+    Array.from(car.images).forEach(file => {
+        if (file instanceof Blob) {
+          const fileReader = new FileReader();
+          fileReader.readAsDataURL(file);
+          fileReader.onload = () => {
+            urls.push(fileReader.result);
+            setUrls(urls);
+          };
+        }
+      });*/
+      //console.log(urls);  
     return (
         <>
-        <div><ImageSlider images={urls} alt={car.name}/></div>
+        <div><ImageSlider images={car.images} alt={car.name}/></div>
     <tr >
     <td>
 

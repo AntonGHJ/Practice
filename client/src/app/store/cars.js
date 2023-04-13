@@ -107,9 +107,22 @@ export const addCar = (payload) => async (dispatch, getState) => {
             dispatch(carCreated(payload));
             console.log('Машина создана');
             console.log(getState());
+            history.push('/cars')
         } catch (error) {
             dispatch(carsRequestFailed(error.message));
             console.log('ошибка создания', getState());
+        }
+    };
+export const loadCarsList = () => async (dispatch) => {
+        dispatch(carsRequested());
+        console.log('Запрошен список машин');
+        try {
+            const { content } = await carService.getCars();
+            dispatch(carsReceived(content));
+            console.log('получен список машин', content);
+        } catch (error) {
+            dispatch(carsRequestFailed(error.message));
+            console.log('НЕ получен список машин, ошибка');
         }
     };
 export const getCarsList = () => (state) => state.cars.entities;
@@ -125,5 +138,5 @@ export const getCarById = (carId) => (state) => {
     }
 };
 
-
+export const getCurrentCarId = () => (state) => state.cars.entities.carId;
 export default carsReducer

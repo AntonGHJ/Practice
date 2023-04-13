@@ -11,7 +11,7 @@ import { addCar } from "../store/cars";
 const CreateCar = () => {
     const properties = useSelector(getProperties())
     const dispatch = useDispatch();
-    const [carImages, setCarImages] = useState()
+    const [carImages, setCarImages] = useState([])
     const [data, setData] = useState({
         name: "",        
         engine: '',        
@@ -40,16 +40,13 @@ const CreateCar = () => {
             properties: e.value
         }));
     };
-    const validatorConfig = {
-        
+    const validatorConfig = {        
         name: {
-
             min: {
                 message: "Имя должно состоять минимум из 3 символов",
                 value: 3
             }
-        },
-        
+        },        
     };
     useEffect(() => {
         validate();
@@ -61,19 +58,42 @@ const CreateCar = () => {
     };
     const isValid = Object.keys(errors).length === 0;
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         const isValid = validate();
         if (!isValid) return;
-        const newData = {
+        
+        const files = carImages;
+        const fileUrls = [];
+        for (let i = 0; i < files.length; i++) {
+          const file = files[i];
+          const data = await file.arrayBuffer();
+          const contentType = file.type;
+          const image = new Image();
+          image.src = URL.createObjectURL(new Blob([data], { type: contentType }));
+          const imgDataUrl = await new Promise((resolve) => {
+            image.onload = () => {
+              const canvas = document.createElement('canvas');
+              canvas.width = image.naturalWidth;
+              canvas.height = image.naturalHeight;
+              canvas.getContext('2d').drawImage(image, 0, 0);
+              resolve(canvas.toDataURL(contentType));
+            };
+          });
+          const imgData = imgDataUrl.replace(/^data:image\/\w+;base64,/, '');
+          const fileUrl = `data:${contentType};base64,${imgData}`;
+          fileUrls.push(fileUrl);
+        }
+        
+           const newData = {
             ...data,
-            images: carImages,
+            images: fileUrls,
             properties: data.properties.map((p) => p.value)
         };
         console.log(newData);
         dispatch(addCar(newData));
-    };
-
+        };
+    
     return (
         <form onSubmit={handleSubmit}>
             <TextField

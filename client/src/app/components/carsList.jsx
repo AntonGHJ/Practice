@@ -13,8 +13,9 @@ import Car from './car';
 const CarsList = () => {   
     
     const cars = useSelector(getCarsList())
+    console.log(cars);
      const dispatch = useDispatch()
-    
+    //const properties = useSelector(getProperties())
     const [theme, toggleTheme] = useDarkMode();
     return (   <>  
     
@@ -29,10 +30,10 @@ const CarsList = () => {
        
     <div className='container'>
     <div className='carListHeader'>OUR BEST CARS</div>
-    {cars.map((car, _id, properties)=>(
+    {cars.map((car, _id, images, properties)=>(
         <div key={_id} className='mb-5' style={{maxWidth:1200, margin:"auto"}}>
             <table className='mb-5' >
-                <Car id={_id} car={car} properties={properties}/>
+                <Car id={_id} images={images} car={car} properties={properties}/>
             
                 <div className='detLink'>
         <Link className="detailsLink" to={`/cars/${car._id}`}>More details</Link>

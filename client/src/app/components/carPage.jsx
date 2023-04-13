@@ -17,7 +17,7 @@ const CarPage = ({ carId }) => {
     const car = useSelector(getCarById(carId));
     
     const [theme, toggleTheme] = useDarkMode()
-    const urls = Array.from(car.images).map(file => URL.createObjectURL(file));
+    //const urls = Array.from(car.images).map(file => URL.createObjectURL(file));
     if (car) {
         return (
             <>
@@ -31,7 +31,7 @@ const CarPage = ({ carId }) => {
         </div>
             <div className="backButton"><BackHistoryButton/></div>
             <div style={{maxWidth:1200, margin:"auto", borderRadius:"15"}}>
-                <Car id={carId} car={car} />
+                <Car id={car._id} car={car} images={car.images} />
             </div>
                 
             </div>
