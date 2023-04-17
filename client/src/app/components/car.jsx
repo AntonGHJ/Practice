@@ -8,7 +8,7 @@ import { useSelector } from "react-redux";
 import { getCarById, getCurrentCarId } from "../store/cars";
 import PropertiesList from "../components/properties/propertiesList";
 import ImageSlider from "./imageSlider";
-import PropertiesCard from "./qualitiesCard";
+import PropertiesCard from "./propertiesCard";
 
 
 const Car = ({ car }) => {

@@ -28,9 +28,9 @@ console.log(isLoggedIn);
                             <Link
                                 className="nav-link "
                                 aria-current="page"
-                                to="/carsList"
+                                to=""
                             >
-                                CarsList
+                                Logged in
                             </Link>
                         </li>
                     )}

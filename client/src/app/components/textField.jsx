@@ -13,7 +13,7 @@ function TextField({ label, type, name, value, onChange, error }) {
         <div className="mb-4">
             <label htmlFor={name}>{label}</label>
             <div className="input-group has-validation">
-                <input style={{background:'transparent'}}
+                <input 
                     type={showPassword ? "text" : type}
                     id={name}
                     name={name}

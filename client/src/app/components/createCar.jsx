@@ -7,8 +7,10 @@ import MultiSelectField from "./multiSelectField";
 import { useDispatch, useSelector } from "react-redux";
 import { getProperties, loadPropertiesList } from "../store/properties";
 import { addCar } from "../store/cars";
+import useDarkMode from "../hooks/useDarkMode";
 
 const CreateCar = () => {
+    const [theme, toggleTheme] = useDarkMode();
     const properties = useSelector(getProperties())
     const dispatch = useDispatch();
     const [carImages, setCarImages] = useState([])
@@ -93,8 +95,19 @@ const CreateCar = () => {
         console.log(newData);
         dispatch(addCar(newData));
         };
+           
+    return (<>
+        
+        <div className={`theme-${theme}`}>
+          <div className='darkmodeDiv'>
+                <button className='darkModeButton' onClick={toggleTheme}>
+                    <span className="sun">☀️</span>
+                    <span className="moon">🌙</span>
+                </button>
+            </div>
     
-    return (
+           
+        <div className='container'>
         <form onSubmit={handleSubmit}>
             <TextField
                 label="Model"
@@ -152,7 +165,9 @@ const CreateCar = () => {
                 Submit
             </button>
         </form>
-    );
+        </div>
+    </div>
+        </>);
 };
 
 export default CreateCar;

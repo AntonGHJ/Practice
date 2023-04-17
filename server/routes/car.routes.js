@@ -22,12 +22,6 @@ router.post('/createCar', [
             })
         }
         const {name, engine, productionYear, mileage, price} = req.body
-        //
-       
-  
-
-
-        //
        
        const newCar = await Car.create({
         ...req.body,
@@ -68,5 +62,22 @@ router.get('/', async(req, res) => {
         })
     }
 })
-
+router.delete('/:carId', /*auth*/ async (req, res) => {
+    try {
+        const { carId } = req.params;
+        const result = await Car.findByIdAndDelete(carId);
+        if (!result) {
+          return res.status(404).json({
+            message: 'Машина не найдена'
+          });
+        }
+        res.status(200).json({
+          message: 'Машина успешно удалена'
+        });
+      } catch (error) {
+        res.status(500).json({
+          message: 'На сервере произошла ошибка. Попробуйте позже'
+        });
+      }
+  })
 module.exports = router

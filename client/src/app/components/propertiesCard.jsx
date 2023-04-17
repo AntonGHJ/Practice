@@ -1,5 +1,5 @@
 import React from "react";
-import Properties from '../components/properties';
+import Properties from './properties';
 import PropTypes from "prop-types";
 
 const PropertiesCard = ({ data }) => {

@@ -14,27 +14,8 @@ const carsSlice = createSlice({
     reducers: {
         /*toggleTheme(state, action){
         
-        },
-        addCar (state, action) {            
-            state.cars.push({              
-                name: action.payload.name,
-                properties: action.payload.properties,
-                _id: new Date().toISOString(),
-                images:  action.payload.images,               
-                engine: action.payload.engine,
-                productionYear: action.payload.productionYear,
-                mileage: action.payload.mileage,
-                price: action.payload.price
-            })
-            console.log( action.payload.images);
-           history.push('/carsList')
-        },
-        removeCar(state, action) {
-            const index = state.cars.findIndex((car) => car._id === action.payload);
-            if (index !== -1) {
-              state.cars.splice(index, 1);
-            }
-          }    */ 
+        },*/
+       
           carsRequested: (state) => {
             state.isLoading = true;
         },
@@ -62,6 +43,9 @@ const carsSlice = createSlice({
                 state.entities.findIndex((c) => c._id === action.payload._id)
             ] = action.payload;
         },    
+        carRemoved: (state, action) => {
+            state.entities = state.entities.filter((c) => c._id !== action.payload);
+        },
     },
     
 });
@@ -72,31 +56,9 @@ const {
     carCreated,
     carUpdateSuccessed,
     carsRequestFailed,
-    
+    carRemoved
 } = actions;
-{/*export const {
-    addCar, removeCar, toggleTheme
-    carsRequested,
-    carsReceived,
-    carCreated,
-    carUpdateSuccessed,
-    carsRequestFailed
-} = carsSlice.actions;*/}
-/*export const addCar = (payload) =>
-    async (dispatch) => {
-        console.log('Пытаюсь создать машину');
-        try {
-            console.log('payload', payload);
-            const {data} = await carService.createCar(payload);
-            console.log('data', data);
-            //dispatch(carCreated(data));
-            console.log('Машина создана');
-            history.push("/cars");
-        } catch (error) {
-            dispatch(carsRequestFailed(error.message));
-            console.log('ошибка создания', getState());
-        }
-    };*/
+
 export const addCar = (payload) => async (dispatch, getState) => {
         dispatch(carsRequested());
         console.log(getState());
@@ -125,6 +87,32 @@ export const loadCarsList = () => async (dispatch) => {
             console.log('НЕ получен список машин, ошибка');
         }
     };
+
+    export const removeCar = (carId) => async (dispatch) => {
+        dispatch(carsRequested());
+        console.log("Пытаюсь удалить машину с id", carId);
+        try {
+            await carService.removeCar(carId);
+            dispatch(carRemoved(carId));
+            console.log("Машина удалена");
+        } catch (error) {
+            dispatch(carsRequestFailed(error.message));
+            console.log("ошибка удаления машины", error.message);
+        }
+    };
+
+export const updateCar = (carId, updatedData) => async (dispatch) => {
+        dispatch(carsRequested());
+        console.log(`Пытаюсь обновить машину с id ${carId}`);
+        try {
+          const { content } = await carService.updateCar(carId, updatedData);
+          dispatch(carUpdateSuccessed(content));
+          console.log(`Машина с id ${carId} обновлена`);
+        } catch (error) {
+          dispatch(carsRequestFailed(error.message));
+          console.log(`Ошибка обновления машины с id ${carId}: ${error.message}`);
+        }
+      };
 export const getCarsList = () => (state) => state.cars.entities;
 export const getCurrentCarData = () => (state) => {
     return state.cars.entities

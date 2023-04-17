@@ -148,7 +148,10 @@ code {
   .carListHeader {
     margin-right: 10px;
   }
-
+  
+  .select__option {
+    color: black !important;
+  }
   .darkModeButton {
     background-color: transparent;
     border-radius: 20px;
@@ -234,12 +237,12 @@ code {
   
   .image-input {
     border: none;
-    background-color: #f8f8f8;
+    background-color: #8f8d8d;
     padding: 0.5rem;
     border-radius: 0.25rem;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
     font-size: 1rem;
-    color: #333;
+    color: #f4f0f0;
     margin: 0.5rem 0;
     cursor: pointer;
   }
