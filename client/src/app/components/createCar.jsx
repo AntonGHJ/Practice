@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { validator } from "../utils/validator";
 import TextField from "./textField";
-
 import MultiSelectField from "./multiSelectField";
-
 import { useDispatch, useSelector } from "react-redux";
-import { getProperties, loadPropertiesList } from "../store/properties";
+import { getProperties } from "../store/properties";
 import { addCar } from "../store/cars";
 import useDarkMode from "../hooks/useDarkMode";
+import { GetFileUrls } from "../utils/addImage";
 
 const CreateCar = () => {
     const [theme, toggleTheme] = useDarkMode();
@@ -65,28 +64,7 @@ const CreateCar = () => {
         const isValid = validate();
         if (!isValid) return;
         
-        const files = carImages;
-        const fileUrls = [];
-        for (let i = 0; i < files.length; i++) {
-          const file = files[i];
-          const data = await file.arrayBuffer();
-          const contentType = file.type;
-          const image = new Image();
-          image.src = URL.createObjectURL(new Blob([data], { type: contentType }));
-          const imgDataUrl = await new Promise((resolve) => {
-            image.onload = () => {
-              const canvas = document.createElement('canvas');
-              canvas.width = image.naturalWidth;
-              canvas.height = image.naturalHeight;
-              canvas.getContext('2d').drawImage(image, 0, 0);
-              resolve(canvas.toDataURL(contentType));
-            };
-          });
-          const imgData = imgDataUrl.replace(/^data:image\/\w+;base64,/, '');
-          const fileUrl = `data:${contentType};base64,${imgData}`;
-          fileUrls.push(fileUrl);
-        }
-        
+        const fileUrls = await GetFileUrls(carImages);
            const newData = {
             ...data,
             images: fileUrls,

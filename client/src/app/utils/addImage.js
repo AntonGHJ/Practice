@@ -1,5 +1,3 @@
-import React from "react";
-
 export const GetFileUrls = async (files) => {
   const fileUrls = [];
   for (let i = 0; i < files.length; i++) {

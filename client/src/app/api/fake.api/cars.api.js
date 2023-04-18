@@ -1,6 +1,6 @@
 /*eslint-disable*/
 
-import Image from "../../components/image";
+
 
 const properties = {
     nonAccident: {

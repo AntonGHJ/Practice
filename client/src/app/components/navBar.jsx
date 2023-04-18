@@ -3,12 +3,14 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Navbar, Nav } from 'react-bootstrap';
 import NavProfile from './navProfile';
-import { getIsLoggedIn } from '../store/users';
+import { getCurrentUserData, getIsLoggedIn } from '../store/users';
 import { useSelector } from 'react-redux';
 
 const NavBar = () => {
-const isLoggedIn = true//useSelector(getIsLoggedIn());
-console.log(isLoggedIn);
+const isLoggedIn = useSelector(getIsLoggedIn());
+
+const currentUser = useSelector(getCurrentUserData());
+
   return (
    
     <Navbar sticky='top' bg="dark" variant='dark'>
@@ -23,37 +25,26 @@ console.log(isLoggedIn);
           <div style={{ marginLeft:'100px', alignContent:'center'}}
           className='navbar-text'> bestdealer@mail.com <span>/</span> +31077708881</div>
           ///
-          {isLoggedIn && (
-                        <li className="nav-item">
-                            <Link
-                                className="nav-link "
-                                aria-current="page"
-                                to=""
-                            >
-                                Logged in
-                            </Link>
-                        </li>
-                    )}
+         
 
           <div className="d-flex">  
                     {isLoggedIn ? (
-                        <NavProfile />
+                       <div 
+                        style={{position:'absolute', right:'10px'}}>
+                         <NavProfile /></div> 
                     ) : (
-                        <Link
-                            className="nav-link "
-                            aria-current="page"
-                            to="/loginForm"
-                        >
-                            Login
-                        </Link>
+                        <Link className="nav-link"
+                        aria-current="page" 
+                        style={{color: 'green', position:'absolute', right:'10px'}} 
+                        to="/loginForm">Admin access</Link>
                     )}
                 </div>
 
           ///
+          {isLoggedIn && (                    
+            <Link className="nav-link" to={`/cars/createCar`}>Add Car</Link>
+            )}      
           
-          <Link className="nav-link" 
-            style={{color: 'green', position:'absolute', right:'10px'}} 
-            to="/loginForm">Admin access</Link>
         </Nav>
         //////
         

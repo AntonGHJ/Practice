@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 const Property = ({ color, name, _id }) => {
     return (
-        <span className={"badge m-1 bg-" + color}>
+        <span className={"badge m-1 bg-" + color + " badge-xl"}>
             {name}
         </span>
     );

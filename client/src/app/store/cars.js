@@ -9,14 +9,10 @@ const carsSlice = createSlice({
     name: "cars", 
     initialState: {
         entities: [],
-       
+       isLoading:true
     }, 
     reducers: {
-        /*toggleTheme(state, action){
-        
-        },*/
-       
-          carsRequested: (state) => {
+       carsRequested: (state) => {
             state.isLoading = true;
         },
         carsReceived: (state, action) => {
@@ -28,13 +24,6 @@ const carsSlice = createSlice({
             state.error = action.payload;
             state.isLoading = false;
         },
-        /*authRequestSuccess: (state, action) => {
-            state.auth = action.payload;
-            state.isLoggedIn = true;
-        },
-        authRequestFailed: (state, action) => {
-            state.error = action.payload;
-        },*/
         carCreated: (state, action) => {
             state.entities.push(action.payload);
         },
@@ -125,6 +114,6 @@ export const getCarById = (carId) => (state) => {
         return state.cars.entities.find((c) => c._id === carId);
     }
 };
-
+export const getCarsLoadingStatus = () => (state) => state.cars.isLoading;
 export const getCurrentCarId = () => (state) => state.cars.entities.carId;
 export default carsReducer

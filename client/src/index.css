@@ -33,22 +33,30 @@ code {
     }
   }
   
-  td {
-    padding: 20px;
-    text-align: left;
+  table td {
+    padding: 0.5rem;
+    border-bottom: 1px solid lightgrey !important ;    
     vertical-align: top;
   }
   .car-desc-text {
-    color: gray;
+    
+    margin-right: 60%;
+    color: rgb(227, 226, 226);
     font-weight: bold;
     font-size: 28px;
+   text-align: left;
+  }
+  .car-data{
+    max-width: 1200px;
+    margin: auto;
+    margin-bottom: 25px;
   }
   
-  .car-detail {
-    margin-left: 30px;
-    font-size: 34px;
-    
+  .car-detail {    
+    text-align: right;    
+    font-size: 34px;    
   }
+  
   .main-picture{
     position: relative;
     margin-top: 100px;
@@ -86,7 +94,7 @@ code {
             text-align: center;
             text-decoration: none;
             display: inline-block;
-         
+         margin: 8px;
     }
     .detailsLink:hover{
      
@@ -104,8 +112,9 @@ code {
         margin-bottom: 20px;
         position: fixed;
     }
-    tr {
+    table tr {
         font-size: 20px;
+        
         font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     }
     p{
@@ -167,6 +176,7 @@ code {
   }
   .img {
     width: 100%;
+    
     height: 100%;
   }
   
@@ -181,13 +191,14 @@ code {
 
   .imageSlide {
     position: relative;
-    
+    margin-top: 25px;
   }
   
   /* Make the image responsive */
   .imageSlide img {
-    width: 100%;
-    height: auto;
+    width: 1200px;
+    height: 850px;
+    object-fit: cover;
     border-radius: 25px;
   }
   
@@ -246,6 +257,74 @@ code {
     margin: 0.5rem 0;
     cursor: pointer;
   }
+  
+  .loader-container {
+    box-sizing: border-box;
+    background-color: transparent;
+    font-family: cursive;
+    font-size: 60px;
+    text-transform: capitalize;
+    color: white;
+}
+
+.loading {
+    display: flex;
+    justify-content: center;
+    margin: 100px 0;
+}
+
+.loading div {
+    animation-name: word-loading;
+    animation-duration: 3s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+    animation-direction: normal;
+
+}
+
+@keyframes word-loading {
+    0% {
+        margin: 0;
+        color: white;
+    }
+
+    100% {
+        margin: 0;
+        color: transparent;
+    }
+
+
+}
+
+.l {
+    color: white;
+    animation-play-state: paused;
+}
+
+.o {
+    animation-delay: .5s;
+
+}
+
+.a {
+    animation-delay: 1s;
+}
+
+.d {
+    animation-delay: 1.5s;
+}
+
+.i {
+    animation-delay: 2s;
+}
+
+.n {
+    animation-delay: 2.5s;
+}
+
+.g {
+    animation-delay: 3s;
+}
 
   /*trial login form*/
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;1,300&display=swap" rel="stylesheet');
@@ -367,3 +446,23 @@ input:empty ~ label {
   text-decoration: underline;
 }
    /*trial login form*/
+
+   .card-container {
+    display: flex;
+    align-items: center;
+  }
+  
+  .card-title {
+    margin-right: 10px;
+    color: rgb(227, 226, 226);
+    font-weight: bold;
+    font-size: 28px;
+    text-align: left;
+  }
+  
+  .card-text {
+    display: flex;
+    font-size: 25px;
+    flex-wrap: wrap;
+  }
+  

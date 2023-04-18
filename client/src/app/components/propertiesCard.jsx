@@ -3,15 +3,14 @@ import Properties from './properties';
 import PropTypes from "prop-types";
 
 const PropertiesCard = ({ data }) => {
-    return (
-       <>
-                <h5 className="card-title">
-                    <span>Properties</span>
-                </h5>
-                <p className="card-text">
-                    <Properties properties={data} />
-                </p>
-                </>
+    return (<>
+        <div className="card-container">
+            <span className="card-title">Properties:</span>
+            <p className="card-text">
+                <Properties properties={data} />
+            </p>
+        </div>
+    </>
     );
 };
 PropertiesCard.propTypes = {

@@ -142,12 +142,8 @@ export const getUserById = (userId) => (state) => {
     }
 };
 
-//export const getIsLoggedIn = () => (state) => state.users.isLoggedIn;
-export const getIsLoggedIn = () => (state) => {
-    console.log('Current user state:', state.users.isLoggedIn);
-    //return state.users.isLoggedIn;
-    return state.users.isLoggedIn
-  };
+export const getIsLoggedIn = () => (state) => state.users.isLoggedIn;
+
 export const getDataStatus = () => (state) => state.users.dataLoaded;
 export const getUsersLoadingStatus = () => (state) => state.users.isLoading;
 export const getCurrentUserId = () => (state) => state.users.auth.userId;

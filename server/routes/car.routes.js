@@ -6,7 +6,7 @@ const auth = require('../middleware/auth.middleware')
 const router = express.Router({mergeParams:true})
 
 
-router.post('/createCar', [
+router.post('/createCar', auth, [
     
     //check('name', 'Min length - 3 symbols').isLength({min:3}),
     async (req, res) => {
@@ -39,7 +39,7 @@ router.post('/createCar', [
 }])
 
 //patch для изменения данных пользователя, get для получения списка пользователей
-router.patch('/:carId', async (req, res) => {
+router.patch('/:carId', auth, async (req, res) => {
     try {
         const { carId } = req.params        
         const updatedCar = await Car.findByIdAndUpdate(carId, req.body, {new: true})
@@ -62,7 +62,7 @@ router.get('/', async(req, res) => {
         })
     }
 })
-router.delete('/:carId', /*auth*/ async (req, res) => {
+router.delete('/:carId', auth, async (req, res) => {
     try {
         const { carId } = req.params;
         const result = await Car.findByIdAndDelete(carId);

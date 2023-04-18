@@ -5,11 +5,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { loadPropertiesList } from "../../store/properties";
 import { getIsLoggedIn, loadUsersList } from "../../store/users";
 
-
 const AppLoader = ({ children }) => {
     const dispatch = useDispatch();
-    const isLoggedIn = true//useSelector(getIsLoggedIn())
-    console.log(isLoggedIn);
+    const isLoggedIn = useSelector(getIsLoggedIn())
+    
     useEffect(() => {
         dispatch(loadPropertiesList());
         if (isLoggedIn) {

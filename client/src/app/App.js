@@ -13,6 +13,7 @@ import AppLoader from './components/hoc/appLoader';
 import RegisterForm from './components/registerForm';
 import ProtectedRoute from './components/protectedRoute';
 import Users from './layouts/users';
+import LogOut from './layouts/logOut';
 
 function App() {
   return (
@@ -31,6 +32,8 @@ function App() {
                   <Route path='/carsList' component={CarsList}/>
                   <Route path='/contact' component={Contact}/>
                   <Route path='/loginForm' exact component={LoginForm}/>
+                  <Route path='/logOut' component={LogOut}/>
+
                   <Route path='/registerForm' exact component={RegisterForm}/>
                   <Route path='/' exact component={Main}/>
                   

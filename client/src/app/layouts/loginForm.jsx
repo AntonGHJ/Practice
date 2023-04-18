@@ -119,7 +119,7 @@ const LoginForm = () => {
                     <Link to={"/registerForm"}>Register</Link></p>
                 </div>
             </form>
-            <Link className="nav-link" to={`/cars/createCar`}>Add Car</Link>
+           
         </div>
     </div>
     </section>

@@ -4,7 +4,6 @@ import Property from "./property";
 import { useDispatch, useSelector } from "react-redux";
 import { getPropertiesByIds, getPropertiesLoadingStatus, loadPropertiesList } from "../../store/properties";
 
-
 const PropertiesList = ({ properties }) => {
     const dispatch = useDispatch();
     const isLoading = useSelector(getPropertiesLoadingStatus());
@@ -12,18 +11,15 @@ const PropertiesList = ({ properties }) => {
     useEffect(() => {
         dispatch(loadPropertiesList());
     }, []);
-
-    if (isLoading) return "Loadind ...";
-
+    if (isLoading) return "Loading ...";
     if(properties){
     return (
-        <div style={{maxWidth:"150px"}}>
+        <div>
             {propertiesList.map((p) => (
                 <Property key={p._id} {...p} />
             ))}
         </div>
     )
-   
     } else {
         return <h1>No additionaly properties to show</h1>};
 };
