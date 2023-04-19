@@ -18,7 +18,7 @@ import LogOut from './layouts/logOut';
 function App() {
   return (
     <AppLoader>
-          <div className='App' style={{textAlign:'center'}}>
+          <div className='App' >
               <NavBar/>
                 <Switch>
                 <ProtectedRoute

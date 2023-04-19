@@ -6,7 +6,7 @@ import PropertiesCard from "./propertiesCard";
 const Car = ({ car }) => {
     if (!car) { return null}
     return ( <>
-        <div><ImageSlider images={car.images} alt={car.name}/></div>
+        <div className="images"><ImageSlider images={car.images} alt={car.name}/>
             <table>
                 <tbody>
                     <tr >
@@ -16,7 +16,15 @@ const Car = ({ car }) => {
                     <tr>
                         <td className="car-desc-text">Type of fuel:</td>      
                         <td className="car-detail" >{car.engine}</td>        
+                    </tr> 
+                    <tr>
+                        <td className="car-desc-text">Power:</td>      
+                        <td className="car-detail" >{car.power}</td>        
                     </tr>    
+                    <tr>
+                        <td className="car-desc-text">Color:</td>      
+                        <td className="car-detail" >{car.color}</td>        
+                    </tr>  
                     <tr>
                         <td className="car-desc-text">Production year: </td>
                         <td className="car-detail">{car.productionYear}</td>  
@@ -36,7 +44,8 @@ const Car = ({ car }) => {
                         <td></td>
                     </tr>
                 </tbody>
-            </table>      
+            </table>
+            </div>
         </>
     );
 }

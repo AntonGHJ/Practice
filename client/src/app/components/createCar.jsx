@@ -15,7 +15,9 @@ const CreateCar = () => {
     const [carImages, setCarImages] = useState([])
     const [data, setData] = useState({
         name: "",        
-        engine: '',        
+        engine: '', 
+        color: '',
+        power: '',       
         price: "",
         mileage: "",
         productionYear: "",
@@ -85,7 +87,7 @@ const CreateCar = () => {
             </div>
     
            
-        <div className='container'>
+        <div className='carsList'> 
         <form onSubmit={handleSubmit}>
             <TextField
                 label="Model"
@@ -97,6 +99,20 @@ const CreateCar = () => {
                 label="Engine"
                 name="engine"
                 value={data.engine}
+                onChange={handleChange}
+               
+            />
+            <TextField
+                label="Power"
+                name="power"
+                value={data.power}
+                onChange={handleChange}
+               
+            />
+            <TextField
+                label="Color"
+                name="color"
+                value={data.color}
                 onChange={handleChange}
                
             />

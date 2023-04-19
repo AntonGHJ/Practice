@@ -22,7 +22,7 @@ const CarPage = ({ carId }) => {
             </div>
             
             <div className="backButton"><BackHistoryButton/></div>
-                <div className='container'>
+                <div className='carsList'>
                     <div className="car-data">
                         <Car id={car._id} car={car} images={car.images} />
                     </div>

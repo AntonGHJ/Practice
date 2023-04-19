@@ -6,6 +6,7 @@ import { getCarsList, getCarsLoadingStatus, removeCar } from '../store/cars';
 import Car from './car';
 import { getIsLoggedIn } from '../store/users';
 import Loader from '../utils/loader';
+import CarShort from './carShort';
 
 const CarsList = () => {       
     const cars = useSelector(getCarsList())
@@ -22,20 +23,18 @@ const CarsList = () => {
             </button>
         </div>
        
-<div className='container'>
+<div className='carsList'>
     <div className='carListHeader'>OUR BEST CARS</div>
         {carsLoadingStatus && <Loader/>}
             {cars.map((car, _id, images, properties)=>(
-                <div key={_id} className='car-data'>
+                <div key={_id} className='car-info'>
                     <table className='mb-5' >
-                        <Car id={_id} images={images} car={car} properties={properties}/>
+                        <CarShort id={_id} images={images} car={car} properties={properties}/>
                         <div className='detLink'>
-                        <Link className="detailsLink" to={`/cars/${car._id}`}>More details</Link>
-               
                         {isLoggedIn && (
                             <div >
-                                <Link className="detailsLink"  to={`/cars/${car._id}/carEdit`}>Edit</Link>        
-                                <button className="detailsLink" 
+                                <Link className="btn btn-secondary mx-2"  to={`/cars/${car._id}/carEdit`}>Edit</Link>        
+                                <button className="btn btn-danger mx-2" 
                                     onClick={() => dispatch(removeCar(car._id))}>  
                                 Delete car</button>
                                 <hr />
@@ -46,7 +45,11 @@ const CarsList = () => {
         </div>   
     ))}
     </div>
+    
 </div>
+
+    
+    
     </>  
      );
 }

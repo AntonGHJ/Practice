@@ -21,6 +21,8 @@ const CarEdit = () => {
     const [data, setData] = useState({
       name: car.name,
       engine: car.engine,
+      power: car.power,
+      color: car.color,
       price: car.price,
       mileage: car.mileage,
       productionYear: car.productionYear,
@@ -134,7 +136,7 @@ const CarEdit = () => {
             </div>
     
            
-        <div className='container'>
+        <div className='carsList'>
         <form onSubmit={handleSubmit}>
         <TextField
             label="Model"
@@ -149,7 +151,20 @@ const CarEdit = () => {
             onChange={handleChange}
            
         />
-        
+       <TextField
+                label="Power"
+                name="power"
+                value={data.power}
+                onChange={handleChange}
+               
+            />
+            <TextField
+                label="Color"
+                name="color"
+                value={data.color}
+                onChange={handleChange}
+               
+            />
          <TextField
             label="Price"
             name="price"
