@@ -1,21 +1,21 @@
 import { useEffect } from "react";
 import PropTypes from "prop-types";
-import { useDispatch, useSelector } from "react-redux";
-import { loadCarsList } from "../../store/cars";
+import { useDispatch } from "react-redux";
+import { loadMessagesList } from "../../store/messages";
 
-const CarsLoader = ({ children }) => {
+const MessagesLoader = ({ children }) => {
     const dispatch = useDispatch();
     useEffect(() => {
-         dispatch(loadCarsList());
+         dispatch(loadMessagesList());
     }, []);
     
     return children;
 };
 
-CarsLoader.propTypes = {
+MessagesLoader.propTypes = {
     children: PropTypes.oneOfType([
         PropTypes.arrayOf(PropTypes.node),
         PropTypes.node
     ])
 };
-export default CarsLoader;
+export default MessagesLoader;

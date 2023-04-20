@@ -13,7 +13,8 @@ const NavProfile = () => {
         setIsOpen(false);
       }
     if (!currentUser) return "loading";
-      return (
+      return (<>
+     
         <div 
             style={{color: 'green'}} 
             className="nav-link" 
@@ -28,7 +29,7 @@ const NavProfile = () => {
             </div>
           )}
         </div>
-      );
+        </>);
 };
 
 export default NavProfile;

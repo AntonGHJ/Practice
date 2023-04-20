@@ -1,36 +1,17 @@
 const express = require('express')
 const Car = require('../models/Car')
-const {check, validationResult} = require('express-validator')
 const auth = require('../middleware/auth.middleware')
-
 const router = express.Router({mergeParams:true})
 
 
 router.post('/createCar', auth, [
-    
-    //check('name', 'Min length - 3 symbols').isLength({min:3}),
     async (req, res) => {
     try {
-        const errors = validationResult(req)
-        if(!errors.isEmpty()){
-            return res.status(400).json({
-                error: {
-                    message: 'INVAID_DATA',
-                    code: 400, 
-                    //errors: errors.array()
-                }
-            })
-        }
-        const {name, engine, productionYear, mileage, price} = req.body
-       
-       const newCar = await Car.create({
-        ...req.body,
-        
+    const {name, engine, productionYear, mileage, price} = req.body
+    const newCar = await Car.create({
+        ...req.body,        
        })
-
-        res.status(201).send({ carId: newCar._id })
-
-
+    res.status(201).send({ carId: newCar._id })
     } catch (error) {
         res.status(500).json({
             message: 'Ошибка на сервере'

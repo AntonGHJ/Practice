@@ -28,9 +28,11 @@ const CarShort = ({ car }) => {
                         </td>
                         <td><Link className="detailsLink" to={`/cars/${car._id}`}>More details</Link></td>
                     </tr>
+                  
                 </tbody>
 
             </table>
+            
             </div>      
         </>
     );

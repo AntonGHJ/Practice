@@ -34,15 +34,6 @@ const RegisterForm = () => {
                 message: "Email введен некорректно"
             }
         },
-        name: {
-            isRequired: {
-                message: "Имя обязательно для заполнения"
-            },
-            min: {
-                message: "Имя должено состаять минимуm из 3 символов",
-                value: 3
-            }
-        },
         password: {
             isRequired: {
                 message: "Пароль обязателен для заполнения"
@@ -92,6 +83,7 @@ const RegisterForm = () => {
            
             <form onSubmit={handleSubmit}>
                 <h2>SIGN UP</h2>
+                {errors.email && <p style={{margin: 0, color:'darkred'}}>{errors.email}</p>}
                 <div className="inputbox">
                 <ion-icon name="mail-outline"></ion-icon>
                     <input 
@@ -99,12 +91,13 @@ const RegisterForm = () => {
                     name="email"
                     value={data.email}
                     onChange={handleChange}
-                   // error={errors.email}
-                    required/>
+                   error={errors.email}
+                    />
                    
                     <label htmlFor="">Email</label>
                   
                 </div>
+                {errors.password && <p style={{margin: 0, color:'darkred'}}>{errors.password}</p>}
                 <div className="inputbox">
                 <ion-icon 
                     style={{cursor:'pointer'}} 
@@ -116,12 +109,10 @@ const RegisterForm = () => {
                         name="password"
                         value={data.password}
                         onChange={handleChange}
-                       // error={errors.password} 
-                        required/>
+                       error={errors.password} 
+                        />
                     <label htmlFor="">Password</label>
                 </div>
-                
-                {/*loginError && <p className="text-danger">{loginError}</p>*/}
 
                 <button 
                     className="logInButton" 

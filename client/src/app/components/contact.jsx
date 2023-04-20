@@ -1,27 +1,74 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Form, Button, Alert } from 'react-bootstrap';
 import useDarkMode from '../hooks/useDarkMode';
+import { validator } from "../utils/validator";
+import { useDispatch } from 'react-redux';
+import { addMessage } from '../store/messages';
 
 function Contact() {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [message, setMessage] = useState('');
+  const dispatch = useDispatch()
+  const [data, setData] = useState({
+    name: '',
+    email: '',
+    message: ''
+  });
   const [showSuccess, setShowSuccess] = useState(false);
-  const [showError, setShowError] = useState(false);
+  const [errors, setErrors] = useState({});
   const [theme, toggleTheme] = useDarkMode()
-
+ 
+  const handleChange = (e) => {
+    setData((prevState) => ({
+        ...prevState,
+        [e.target.name]: e.target.value
+    }));
+   
+};
+const validatorConfig = {        
+  email: {
+    isRequired: {
+        message: "Электронная почта обязательна для заполнения"
+    },
+    isEmail: {
+        message: "Email введен некорректно"
+    }
+},
+name: {
+    isRequired: {
+        message: "Имя обязательно для заполнения"
+    },
+    min: {
+        message: "Имя должено состаять минимум из 3 символов",
+        value: 3
+    }
+},
+message: {
+  isRequired: {
+      message: "Введите ваше сообщение"
+  }
+},     
+};
+useEffect(() => {
+  validate();
+}, [data]);
+const validate = () => {
+  const errors = validator(data, validatorConfig);
+  setErrors(errors);
+  return Object.keys(errors).length === 0;
+};
+  const isValid = Object.keys(errors).length === 0;
   const handleSubmit = async e => {
     e.preventDefault();
-    try {
+    const isValid = validate();
+        if (!isValid) return;
+    
       // send a post request to server with the contact information
-      
+      const newData = {
+        ...data};
+        console.log(newData);
       setShowSuccess(true);
-      setName('');
-      setEmail('');
-      setMessage('');
-    } catch (error) {
-      setShowError(true);
-    }
+      dispatch(addMessage(newData))
+    
+    
   };
 
   return (
@@ -37,31 +84,51 @@ function Contact() {
         
         <Alert show={showSuccess} variant="success" >
         Message sent successfully!
-      </Alert>
-      <Alert show={showError} variant="danger" >
-        There was an error sending your message.
-      </Alert> 
+      </Alert>      
       <section>
+        
       <div className="form-box">
         <div className="form-value">
             <form action="">
                 <h2>Contact us</h2>
+                {errors.email && <p style={{margin: 0, color:'darkred'}}>{errors.email}</p>}
+              
+                
                 <div className="inputbox">
                
-                    <input type="text"/>
+                    <input type="text" 
+                    name="email"
+                    value={data.email} 
+                    onChange={handleChange} 
+                    error={errors.email} 
+                    />
+                    
                     <label htmlFor="">Enter your email</label>
                 </div>
+                {errors.name && <p style={{margin: 0, color:'darkred'}}>{errors.name}</p>}
                 <div className="inputbox">
                 
-                    <input type="text" required/>
-                    <label htmlFor="">Enter your name</label>
+                    <input type="text" 
+                      name="name"
+                      value={data.name} 
+                      onChange={handleChange} 
+                      error={errors.name} />
+                    <label htmlFor="">Enter your name </label>
                 </div>
-                
+                {errors.message && <p style={{margin: 0, color:'darkred'}}>{errors.message}</p>}
                 <div className="inputbox">
-                  <input type="textarea" rows="100" />
+                  <input type="text" 
+                      name="message"
+                      value={data.message} 
+                      onChange={handleChange} 
+                      error={errors.message} />
                   <label htmlFor="">Enter your message</label>
                 </div>
-                <button className="logInButton" onClick={handleSubmit}>Send message</button>
+                <button  disabled={!isValid} 
+                className="logInButton" 
+                onClick={handleSubmit}>
+                  Send message!
+                </button>
                 
             </form>
 
@@ -69,7 +136,7 @@ function Contact() {
     </div>
     
     </section>
-      
+   
       </div>
       </>
   );

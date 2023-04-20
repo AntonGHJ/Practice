@@ -22,6 +22,7 @@ const CarEdit = () => {
       name: car.name,
       engine: car.engine,
       power: car.power,
+      description: car.descriotion,
       color: car.color,
       price: car.price,
       mileage: car.mileage,
@@ -183,6 +184,13 @@ const CarEdit = () => {
             label="Production Year"
             name="productionYear"
             value={data.productionYear}
+            onChange={handleChange}
+        
+        />
+         <TextField
+            label="Description"
+            name="description"
+            value={data.description}
             onChange={handleChange}
         
         />

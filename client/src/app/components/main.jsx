@@ -1,14 +1,11 @@
 import React from 'react';
 import "../App.css"
-import useDarkMode from '../hooks/useDarkMode';
-
-import Description from './description';
-import MainPicture from './mainPict';
+import MainPageText from './mainPageText';
 
 const Main = () => {
-   const [theme, toggleTheme] = useDarkMode()
+  
     return (
-   <div className='mainbc'>
+   <div className='main-page'>
     <div className='container'>
     {/*<div className={`theme-${theme}`}>
     <div className='darkmodeDiv'>
@@ -21,7 +18,7 @@ const Main = () => {
        
 
         
-       <Description/>
+       <MainPageText/>
         
        </div>
     </div>

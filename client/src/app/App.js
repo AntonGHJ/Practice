@@ -14,6 +14,8 @@ import RegisterForm from './components/registerForm';
 import ProtectedRoute from './components/protectedRoute';
 import Users from './layouts/users';
 import LogOut from './layouts/logOut';
+import MessagesList from './components/messagesList';
+import Messages from './layouts/messages';
 
 function App() {
   return (
@@ -29,7 +31,7 @@ function App() {
                   <Route path='/cars/createCar' component={CreateCar}/>
                   <Route path='/cars/:carId?' component={Cars}/>
                   <Route path="/loginForm/:type?" component={LoginForm} />
-                  <Route path='/carsList' component={CarsList}/>
+                  <Route path='/messages' component={Messages}/>
                   <Route path='/contact' component={Contact}/>
                   <Route path='/loginForm' exact component={LoginForm}/>
                   <Route path='/logOut' component={LogOut}/>

@@ -20,6 +20,7 @@ const CreateCar = () => {
         power: '',       
         price: "",
         mileage: "",
+        description: '',
         productionYear: "",
         images: [],
         properties: []
@@ -46,7 +47,7 @@ const CreateCar = () => {
     const validatorConfig = {        
         name: {
             min: {
-                message: "Имя должно состоять минимум из 3 символов",
+                message: "Название должно состоять минимум из 3 символов",
                 value: 3
             }
         },        
@@ -94,13 +95,13 @@ const CreateCar = () => {
                 name="name"
                 value={data.name}
                 onChange={handleChange}
+                error={errors.name}
             />
             <TextField
                 label="Engine"
                 name="engine"
                 value={data.engine}
-                onChange={handleChange}
-               
+                onChange={handleChange}               
             />
             <TextField
                 label="Power"
@@ -113,30 +114,32 @@ const CreateCar = () => {
                 label="Color"
                 name="color"
                 value={data.color}
-                onChange={handleChange}
-               
+                onChange={handleChange}               
             />
             
              <TextField
                 label="Price"
                 name="price"
                 value={data.price}
-                onChange={handleChange}
-            
+                onChange={handleChange}            
             />
             <TextField
                 label="Mileage"
                 name="mileage"
                 value={data.mileage}
-                onChange={handleChange}
-            
+                onChange={handleChange}            
             />
             <TextField
                 label="Production Year"
                 name="productionYear"
                 value={data.productionYear}
-                onChange={handleChange}
-            
+                onChange={handleChange}            
+            />
+             <TextField
+                label="Description"
+                name="description"
+                value={data.description}
+                onChange={handleChange}            
             />
             <MultiSelectField 
                 defaultValue={data.properties}

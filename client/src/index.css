@@ -67,6 +67,7 @@ code {
   h1 {
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     color: rgb(244, 244, 244);
+    text-align: center;
     }
   .carsList{
     min-height: 100vh;
@@ -108,8 +109,13 @@ code {
         
 }
     h3 {
+      height: 300px;
         font-family: Verdana, Geneva, Tahoma, sans-serif;
-        color: bisque
+        color: rgb(253, 254, 246);
+        text-align: center;
+        margin-bottom: 30px;
+        letter-spacing: 5px;
+       
     }
     .backButton{
        left: 10;
@@ -142,11 +148,20 @@ code {
     background-position: center center;
     background-attachment: fixed;
   }
-  .mainbc{
+  
+  .main-page{
+    display: flex;
+    justify-content: center;
+    align-items: center;
     min-height: 100vh;
     background: url('./app/utils/pictures/BackgroundMain-V1.jpg')no-repeat;
     background-position: center;
   background-size: cover;
+  }
+  .main-page-text{
+   
+    color: #333;
+    padding: 20px;
   }
   .theme-dark {
     height: 100%;

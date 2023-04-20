@@ -43,6 +43,7 @@ const Car = ({ car }) => {
                         </td>
                         <td></td>
                     </tr>
+                    <tr><p>{car.description}</p></tr>
                 </tbody>
             </table>
             </div>
