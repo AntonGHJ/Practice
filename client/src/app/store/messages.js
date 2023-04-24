@@ -1,5 +1,4 @@
 /*eslint-disable */
-
 import { createSlice } from "@reduxjs/toolkit";
 import messageService from "../services/message.service";
 
@@ -40,58 +39,35 @@ const {
     messageRemoved
 } = actions;
 
-export const addMessage = (payload) => async (dispatch, getState) => {
+export const addMessage = (payload) => async (dispatch) => {
         dispatch(messagesRequested());
-        console.log(getState());
         try {
-            console.log('Пытаюсь создать сообщение, payload', payload);
-            const { content } = await messageService.createMessage(payload);
-            console.log('Пытаюсь создать сообщение, контент', content);
-            dispatch(messageCreated(payload));
-            console.log('Сообщение создано');
+            const { content } = await messageService.createMessage(payload);           
+            dispatch(messageCreated(content));          
         } catch (error) {
             dispatch(messagesRequestFailed(error.message));
-            console.log('ошибка сообщения', getState());
         }
     };
 export const loadMessagesList = () => async (dispatch) => {
         dispatch(messagesRequested());
-        console.log('Запрошены сообщения');
         try {
             const { content } = await messageService.getMessages();
             dispatch(messagesReceived(content));
-            console.log('получен список собщений', content);
         } catch (error) {
             dispatch(messagesRequestFailed(error.message));
-            console.log('НЕ получен список сообщений, ошибка');
         }
     };
 
     export const removeMessage = (messageId) => async (dispatch) => {
-        dispatch(messagesRequested());
-        console.log("Пытаюсь удалить сообщение с id", messageId);
+        dispatch(messagesRequested())
         try {
             await messageService.removeMessage(messageId);
             dispatch(messageRemoved(messageId));
-            console.log("сообщение удалено");
         } catch (error) {
             dispatch(messagesRequestFailed(error.message));
-            console.log("ошибка удаления сообщения", error.message);
         }
     };
 
 export const getMessagesList = () => (state) => state.messages.entities;
-export const getCurrentMessageData = () => (state) => {
-    return state.messages.entities
-        ? state.messages.entities.find((m) => m._id === state.messages.messageId)
-        : null;
-};
-
-export const getMessageById = (messageId) => (state) => {
-    if (state.messages) {
-        return state.messages.entities.find((m) => m._id === messageId);
-    }
-};
 export const getMessagesLoadingStatus = () => (state) => state.messages.isLoading;
-export const getCurrentMessageId = () => (state) => state.messages.entities.messageId;
 export default messagesReducer

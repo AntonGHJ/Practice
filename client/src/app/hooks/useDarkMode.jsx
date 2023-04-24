@@ -20,7 +20,9 @@ const useDarkMode = () => {
     }
   }, []);
 
-  return [theme, toggleTheme];
+  const icon = theme === "light" ? "🌙" : "☀️";
+
+  return { theme, toggleTheme, icon };
 };
 
 export default useDarkMode;

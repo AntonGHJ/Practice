@@ -13,7 +13,6 @@ const carService = {
     },
     removeCar: async (carId) => {
         const { data } = await httpService.delete(carEndpoint + carId);
-        console.log(data);
         return data;
     },
     updateCar: async (carId, updatedData) => {

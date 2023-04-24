@@ -1,15 +1,15 @@
 import React from "react";
 import MessagesLoader from "../components/hoc/messagesLoader";
-import MessagesList from "../components/messagesList";
+import MessagesList from "../components/page/messagesList";
 
 const Messages = () => {
-    return (
+  return (
     <>
-    <MessagesLoader>        
+      <MessagesLoader>
         <MessagesList />
-    </MessagesLoader>
+      </MessagesLoader>
     </>
-    );
+  );
 };
 
 export default Messages;
