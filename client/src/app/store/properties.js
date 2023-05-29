@@ -28,12 +28,10 @@ const { propertiesRequested, propertiesReceived, propertiesRequestFailed } =
   actions;
 
 export const loadPropertiesList = () => async (dispatch, getState) => {
-  console.log(getState());
   dispatch(propertiesRequested());
   try {
     const { content } = await propertyService.fetchAll();
     dispatch(propertiesReceived(content));
-    console.log(content);
   } catch (error) {
     dispatch(propertiesRequestFailed(error.message));
   }

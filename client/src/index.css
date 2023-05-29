@@ -54,14 +54,6 @@ table {
   width: 100%;
   border-collapse: collapse;
 }
-@media only screen and (max-width: 768px) {
-  .carListHeader {
-    font-size: 24px;
-  }
-  table {
-    width: 80%;
-  }
-}
 
 table td {
   padding: 0.5rem;
@@ -199,6 +191,7 @@ table tr {
 .images {
   display: flex;
   margin-bottom: 20px;
+  margin-top: 50px;
 }
 .imageSlide {
   position: relative;
@@ -213,7 +206,26 @@ table tr {
   object-fit: cover;
   border-radius: 25px;
 }
+@media only screen and (max-width: 1500px) {
+  .carListHeader {
+    font-size: 24px;
+  }
+  table {
+    width: 96%;
+  }
+  .images {
+    display: block;
+  }
 
+  .backButton {
+    position: absolute;
+  }
+  .carsList {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
+}
 .buttonChangePicLeft {
   position: absolute;
   top: 5%;
